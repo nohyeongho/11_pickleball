@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: busan-pickleball
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install --legacy-peer-deps && vite build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production

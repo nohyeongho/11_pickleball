@@ -1,0 +1,118 @@
+{
+  "entities": {
+    "TournamentApplication": {
+      "title": "TournamentApplication",
+      "description": "A participant application for the pickleball tournament",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the application",
+          "maxLength": 64
+        },
+        "regNumber": {
+          "type": "string",
+          "description": "Tournament registration number, e.g., 2027-A-001",
+          "maxLength": 32
+        },
+        "division": {
+          "type": "string",
+          "description": "Division of the competition, e.g., 1부, 2부",
+          "maxLength": 30
+        },
+        "clubName": {
+          "type": "string",
+          "description": "Name of the club or team",
+          "maxLength": 50
+        },
+        "player1Name": {
+          "type": "string",
+          "description": "Primary player's full name",
+          "maxLength": 30
+        },
+        "player1Phone": {
+          "type": "string",
+          "description": "Primary player's phone number",
+          "maxLength": 20
+        },
+        "player2Name": {
+          "type": "string",
+          "description": "Partner player's full name",
+          "maxLength": 30
+        },
+        "player2Phone": {
+          "type": "string",
+          "description": "Partner player's phone number",
+          "maxLength": 20
+        },
+        "depositorName": {
+          "type": "string",
+          "description": "Name used for the bank transfer deposit",
+          "maxLength": 40
+        },
+        "confirmPassword": {
+          "type": "string",
+          "description": "Password to edit or cancel the registration",
+          "maxLength": 32
+        },
+        "eventType": {
+          "type": "string",
+          "description": "Type of event: 남자복식, 여자복식, 혼합복식",
+          "enum": ["남자복식", "여자복식", "혼합복식"]
+        },
+        "status": {
+          "type": "string",
+          "description": "Application status",
+          "maxLength": 50
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Readable Korean formatted registration timestamp",
+          "maxLength": 50
+        }
+      },
+      "required": [
+        "id",
+        "regNumber",
+        "division",
+        "clubName",
+        "player1Name",
+        "player1Phone",
+        "player2Name",
+        "player2Phone",
+        "depositorName",
+        "eventType",
+        "status",
+        "createdAt"
+      ]
+    },
+    "TournamentSettings": {
+      "title": "TournamentSettings",
+      "description": "Global tournament configurations such as divisions, capacities, and bank account",
+      "type": "object",
+      "properties": {
+        "depositAccount": {
+          "type": "string",
+          "description": "Bank account information for entry fee deposit",
+          "maxLength": 100
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update",
+          "maxLength": 50
+        }
+      },
+      "required": ["depositAccount"]
+    }
+  },
+  "firestore": {
+    "/applications/{applicationId}": {
+      "schema": "TournamentApplication",
+      "description": "Stores all tournament registration documents"
+    },
+    "/settings/{settingId}": {
+      "schema": "TournamentSettings",
+      "description": "Stores global tournament configuration settings"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "2027 피클볼대회 참가신청 및 관리",
+  "description": "2027 전국 피클볼대회 참가신청 접수, 신청 조회 및 취소, 대기자 자동 승격, 관리자 대시보드 및 구글 시트 연동 웹 애플리케이션",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

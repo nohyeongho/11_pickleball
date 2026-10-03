@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidApplication(data) {
+      return data.keys().hasAll([
+        'id', 'regNumber', 'division', 'clubName', 'player1Name',
+        'player1Phone', 'player2Name', 'player2Phone', 'depositorName',
+        'eventType', 'status', 'createdAt'
+      ]) &&
+      data.keys().hasOnly([
+        'id', 'regNumber', 'division', 'clubName', 'player1Name',
+        'player1Phone', 'player2Name', 'player2Phone', 'depositorName',
+        'eventType', 'status', 'createdAt', 'confirmPassword'
+      ]) &&
+      data.id is string && data.id.size() <= 64 &&
+      data.regNumber is string && data.regNumber.size() <= 32 &&
+      data.division is string && data.division.size() <= 30 &&
+      data.clubName is string && data.clubName.size() <= 50 &&
+      data.player1Name is string && data.player1Name.size() <= 30 &&
+      data.player1Phone is string && data.player1Phone.size() <= 20 &&
+      data.player2Name is string && data.player2Name.size() <= 30 &&
+      data.player2Phone is string && data.player2Phone.size() <= 20 &&
+      data.depositorName is string && data.depositorName.size() <= 40 &&
+      (!('confirmPassword' in data) || (data.confirmPassword is string && data.confirmPassword.size() <= 32)) &&
+      data.eventType in ['남자복식', '여자복식', '혼합복식'] &&
+      data.status is string && data.status.size() <= 50 &&
+      data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    match /applications/{appId} {
+      allow get, list: if true;
+      allow create: if isValidId(appId) && incoming().id == appId && isValidApplication(incoming());
+      allow update: if isValidId(appId) && isValidApplication(incoming()) && incoming().id == existing().id;
+      allow delete: if isValidId(appId);
+    }
+
+    match /settings/{settingId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(settingId);
+      allow delete: if false;
+    }
+
+    // Connection testing path
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}
