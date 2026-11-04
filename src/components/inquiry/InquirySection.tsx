@@ -67,9 +67,10 @@ export const InquirySection: React.FC<InquirySectionProps> = ({
               value={keyword}
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="접수번호(예: 2027-A-001) 또는 선수 이름, 휴대폰번호 검색"
-              className="input-field pl-10"
+              className="input-field !pl-10"
+              style={{ paddingLeft: '2.625rem' }}
             />
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
           <button
             type="submit"

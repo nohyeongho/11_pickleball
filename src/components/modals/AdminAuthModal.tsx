@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ADMIN_PASSWORD } from '../../constants/defaults';
+import { verifyAdminPassword } from '../../constants/defaults';
 import { Lock } from 'lucide-react';
 
 interface AdminAuthModalProps {
@@ -14,9 +14,10 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({ isOpen, onSucces
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e?: React.FormEvent) => {
+  const handleSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
+    const isValid = await verifyAdminPassword(password);
+    if (isValid) {
       setHasError(false);
       setPassword('');
       onSuccess();
@@ -55,7 +56,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({ isOpen, onSucces
           />
           {hasError && (
             <p className="text-xs text-center font-medium text-rose-600">
-              비밀번호가 일치하지 않습니다. (기본: 1029)
+              비밀번호가 일치하지 않습니다.
             </p>
           )}
           <div className="flex gap-2 pt-2">

@@ -19,6 +19,7 @@ import {
   Sparkles,
   Clock,
   AlertTriangle,
+  BookOpen,
 } from 'lucide-react';
 
 interface RegistrationSectionProps {
@@ -27,6 +28,7 @@ interface RegistrationSectionProps {
   applications: TournamentApplication[];
   depositAccount: string;
   openAt?: string;
+  onOpenGuide?: () => void;
   onSubmit: (formData: {
     eventType: EventType;
     division: string;
@@ -46,6 +48,7 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
   applications,
   depositAccount,
   openAt,
+  onOpenGuide,
   onSubmit,
 }) => {
   const [eventType, setEventType] = useState<EventType>('남자복식');
@@ -160,26 +163,38 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
 
   return (
     <section id="tab-register" className="space-y-6">
-      <div className="bg-gradient-to-br from-pink-50/70 via-white to-purple-50/40 border border-pink-200/80 rounded-2xl p-6 sm:p-7 shadow-sm relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-fuchsia-500 to-rose-500" />
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-rose-500/10 via-pink-400/10 to-purple-500/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="border-gradient-banner rounded-2xl p-6 sm:p-7 shadow-xs relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-brand-bar opacity-85" />
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-rose-500/8 via-pink-400/8 to-purple-500/8 rounded-full blur-2xl pointer-events-none" />
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 text-xs font-bold tracking-wider">
-            <Trophy className="w-3.5 h-3.5 text-rose-500" />
-            <span className="bg-gradient-to-r from-purple-600 via-fuchsia-600 to-rose-500 bg-clip-text text-transparent font-extrabold">
-              2027 NATIONAL PICKLEBALL CHAMPIONSHIP
-            </span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-pink-100/70 text-rose-700 border border-pink-200/60 ml-1">
-              <Sparkles className="w-2.5 h-2.5 text-rose-500" /> 실시간 접수
-            </span>
+        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div className="flex flex-wrap items-center gap-2 text-xs font-bold tracking-wider">
+              <Trophy className="w-3.5 h-3.5 text-rose-500 shrink-0" />
+              <span className="text-gradient-brand font-extrabold">
+                2027 Busan Pickleball Association President's Cup National Pickleball Tournament
+              </span>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-pink-100/70 text-rose-700 border border-pink-200/60">
+                <Sparkles className="w-2.5 h-2.5 text-rose-500" /> 실시간 접수
+              </span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 bg-clip-text text-transparent tracking-tight mt-1.5">
+              부산광역시 피클볼대회 참가신청 접수
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+              정원 내 선착순 마감되며, 정원 초과 시 실시간 대기 순번으로 자동 배정됩니다.
+            </p>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 bg-clip-text text-transparent tracking-tight mt-1.5">
-            전국 피클볼대회 참가신청 접수
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            정원 내 선착순 마감되며, 정원 초과 시 실시간 대기 순번으로 자동 배정됩니다.
-          </p>
+          {onOpenGuide && (
+            <button
+              type="button"
+              onClick={onOpenGuide}
+              className="px-4 py-2.5 rounded-xl text-xs font-bold border-gradient-tab text-rose-600 hover:opacity-90 transition-all flex items-center justify-center gap-1.5 shrink-0 self-start sm:self-center"
+            >
+              <BookOpen className="w-4 h-4 text-rose-500" />
+              <span>대회 운영안내</span>
+            </button>
+          )}
         </div>
       </div>
 

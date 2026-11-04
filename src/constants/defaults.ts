@@ -18,7 +18,20 @@ export const DEFAULT_DIVISION_CODES: DivisionCodes = {
 
 export const DEFAULT_ACCOUNT = '카카오뱅크 3333-36-8513229 (피클볼대회 조직위원회)';
 export const MAX_WAITLIST = 4;
-export const ADMIN_PASSWORD = '1029';
+
+const ADMIN_AUTH_SALT = 'pickleball_admin_salt_2027';
+export const ADMIN_PASSWORD_HASH =
+  '38fc2e4778837715e14bea08f190eb19934d0eaf7e1f402cafca72cee0cac17f';
+
+export async function verifyAdminPassword(input: string): Promise<boolean> {
+  if (!input) return false;
+  const data = new TextEncoder().encode(`${ADMIN_AUTH_SALT}:${input.trim()}`);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashHex = Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+  return hashHex === ADMIN_PASSWORD_HASH;
+}
 
 export const DEFAULT_OPEN_AT = '';
 

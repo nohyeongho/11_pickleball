@@ -22,6 +22,7 @@ import { Modal } from './components/common/Modal';
 import { ConfirmModal } from './components/common/ConfirmModal';
 import { AdminAuthModal } from './components/modals/AdminAuthModal';
 import { CancelAuthModal } from './components/modals/CancelAuthModal';
+import { TournamentGuideModal } from './components/modals/TournamentGuideModal';
 
 import { RegistrationSection } from './components/registration/RegistrationSection';
 import { InquirySection } from './components/inquiry/InquirySection';
@@ -51,6 +52,25 @@ export default function App() {
   const [adminUnlocked, setAdminUnlocked] = useState(false);
   const [isAdminAuthModalOpen, setIsAdminAuthModalOpen] = useState(false);
   const [cancellingApp, setCancellingApp] = useState<TournamentApplication | null>(null);
+  const [isGuideModalOpen, setIsGuideModalOpen] = useState<boolean>(() => {
+    try {
+      const hiddenDate = localStorage.getItem('pickle_hide_guide_date');
+      const today = new Date().toLocaleDateString('sv-SE');
+      return hiddenDate !== today;
+    } catch {
+      return true;
+    }
+  });
+
+  const handleHideGuideToday = () => {
+    try {
+      const today = new Date().toLocaleDateString('sv-SE');
+      localStorage.setItem('pickle_hide_guide_date', today);
+    } catch {
+      // ignore localStorage error
+    }
+    setIsGuideModalOpen(false);
+  };
 
   const [modalState, setModalState] = useState<ModalState>({
     isOpen: false,
@@ -556,6 +576,7 @@ export default function App() {
             depositAccount={depositAccount}
             openAt={openAt}
             onSubmit={handleRegistrationSubmit}
+            onOpenGuide={() => setIsGuideModalOpen(true)}
           />
         )}
 
@@ -594,6 +615,12 @@ export default function App() {
       <AppFooter />
 
       {/* Global Modals */}
+      <TournamentGuideModal
+        isOpen={isGuideModalOpen}
+        onClose={() => setIsGuideModalOpen(false)}
+        onHideToday={handleHideGuideToday}
+      />
+
       <Modal state={modalState} onClose={() => setModalState((prev) => ({ ...prev, isOpen: false }))} />
 
       <ConfirmModal

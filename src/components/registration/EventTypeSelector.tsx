@@ -8,7 +8,7 @@ interface EventTypeSelectorProps {
 }
 
 export const EventTypeSelector: React.FC<EventTypeSelectorProps> = ({ value, onChange }) => {
-  const options: EventType[] = ['남자복식', '여자복식'];
+  const options: EventType[] = ['남자복식', '여자복식', '혼합복식'];
 
   return (
     <div>
@@ -16,17 +16,17 @@ export const EventTypeSelector: React.FC<EventTypeSelectorProps> = ({ value, onC
         <span>복식 종목 선택</span>
         <span className="text-rose-600 font-bold">*</span>
       </label>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {options.map((option) => {
           const isSelected = value === option;
           return (
             <label
               key={option}
               onClick={() => onChange(option)}
-              className={`p-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold cursor-pointer select-none border-2 transition-all ${
+              className={`p-3.5 rounded-xl flex items-center justify-center gap-2 text-sm font-bold cursor-pointer select-none transition-all ${
                 isSelected
-                  ? 'border-fuchsia-500 bg-white text-rose-600 shadow-xs ring-2 ring-pink-400/25'
-                  : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
+                  ? 'border-gradient-selected text-rose-600'
+                  : 'border-2 border-slate-200 bg-white text-slate-700 hover:border-slate-300'
               }`}
             >
               <input

@@ -101,10 +101,10 @@ export const DivisionSelector: React.FC<DivisionSelectorProps> = ({
               type="button"
               key={div}
               onClick={() => onSelectDivision(div)}
-              className={`p-3.5 cursor-pointer select-none border-2 text-left transition-all rounded-xl ${
+              className={`p-3.5 cursor-pointer select-none text-left transition-all rounded-xl ${
                 isSelected
-                  ? 'border-fuchsia-500 bg-white ring-2 ring-pink-400/25 shadow-xs'
-                  : 'border-slate-200 bg-white hover:border-slate-300'
+                  ? 'border-gradient-selected'
+                  : 'border-2 border-slate-200 bg-white hover:border-slate-300'
               }`}
             >
               <div className="flex items-center justify-between mb-1">
@@ -135,7 +135,7 @@ export const DivisionSelector: React.FC<DivisionSelectorProps> = ({
                     width: `${info.pct}%`,
                     background: info.isFull
                       ? '#D97706'
-                      : 'linear-gradient(90deg, #7C3AED 0%, #D946EF 50%, #F43F5E 100%)',
+                      : 'linear-gradient(135deg, #8B5CF6 0%, #D96B98 50%, #F43F5E 100%)',
                   }}
                 ></span>
               </div>
