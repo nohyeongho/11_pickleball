@@ -19,6 +19,10 @@ interface TournamentGuideModalProps {
   onHideToday: () => void;
 }
 
+/**
+ * 대회 공식 요강 및 운영 안내 모달 컴포넌트
+ * - 기존 레이아웃과 5~7번 항목은 원본 그대로 유지하고, 요청된 1~4번 대회 요강 문구만 교체함
+ */
 export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
   isOpen,
   onClose,
@@ -94,13 +98,13 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
               <li className="flex items-start gap-2">
                 <span className="text-rose-500 font-bold shrink-0">◈</span>
                 <div>
-                  <strong className="text-slate-900">후 원:</strong> 북구피클볼협회. 남구피클볼협회. 부산진구피클볼협회. 연제구피클볼협회. 영도구피클볼협회. 해운대구피클볼협회.
+                  <strong className="text-slate-900">후 원:</strong> 부산광역시. 부산광역시 체육회, 북구피클볼협회. 남구피클볼협회. 부산진구피클볼협회. 연제구피클볼협회. 영도구피클볼협회. 해운대구피클볼협회.
                 </div>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-rose-500 font-bold shrink-0">◈</span>
                 <div>
-                  <strong className="text-slate-900">협 찬:</strong> -
+                  <strong className="text-slate-900">협 찬:</strong>
                 </div>
               </li>
             </ul>
@@ -146,21 +150,22 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
                 <div className="w-full">
                   <strong className="text-slate-900">경기 종목 및 팀 수</strong>
                   <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs bg-white p-3 rounded-lg border border-slate-200/80">
-                    <div>• <strong>1부:</strong> 남자복식 8팀, 여자복식 8팀, 혼합복식 8팀 (48명)</div>
-                    <div>• <strong>2부:</strong> 남자복식 8팀, 여자복식 8팀, 혼합복식 8팀 (48명)</div>
-                    <div>• <strong>3부:</strong> 남자복식 8팀, 여자복식 8팀, 혼합복식 8팀 (48명)</div>
-                    <div>• <strong>4부:</strong> 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀 (72명)</div>
-                    <div className="sm:col-span-2">• <strong>5부:</strong> 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀 (72명)</div>
+                    <div>1부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</div>
+                    <div>- 2부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</div>
+                    <div>- 3부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</div>
+                    <div>- 4부: 남자복식 16팀, 여자복식 16팀, 혼합복식 16팀-96명</div>
+                    <div className="sm:col-span-2">- 5부: 남자복식 16팀, 여자복식 16팀, 혼합복식 16팀-96명</div>
                   </div>
                   <p className="text-xs text-slate-500 mt-1.5">
-                    ※ 모든 종목은 12팀 미만으로 제한하나 종목별 참가팀 수를 고려하여 조정할 수 있고, 6팀 미만으로 신청된 종목은 폐부 될 수 있음.
+                    ※ 참가팀은 12팀(1~3부) 또는 16팀(4~5부) 이하로 제한하나 종목별 참가팀 수를 고려하여 조정할 수 있고, 6팀 미만으로 신청된 종목은 폐부 될 수 있음.
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-2 pt-1">
                 <span className="text-rose-500 font-bold shrink-0">◈</span>
                 <div>
-                  <strong className="text-slate-900">시상 내역:</strong> 우승: 메달+상품 or 상금 / 준우승: 메달+상품 or 상금 / 3위: 메달+상품 or 상금
+                  <strong className="text-slate-900">시상 내역</strong>
+                  <p className="mt-0.5">- 우승: 메달+  상금 15만원  /준우승: 메달+상금 10만원 / 3위: 메달+상금 5만원</p>
                   <p className="text-xs text-slate-500 mt-0.5">
                     ※ 종목별 참가팀이 8팀 미만일 경우 시상품 등 시상 내역이 조정될 수 있음.
                   </p>
@@ -179,9 +184,9 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
               <div className="flex items-start gap-2">
                 <span className="text-rose-500 font-bold shrink-0">◈</span>
                 <div>
-                  <strong className="text-slate-900">참가대상:</strong> 2026년 11월 부산광역시 피클볼협회 회원 가입된 회원.
+                  <strong className="text-slate-900">참가대상:</strong> 2026년 11월 부산광역시 피클볼협회 회원으로 가입된 회원
                   <p className="text-xs text-rose-600 font-semibold mt-0.5">
-                    ※ 시외 참가자는 참가비만 납부하면 가능.
+                    ※ 시외(타시도) 참가자는 참가비만 납부하면 가능
                   </p>
                 </div>
               </div>
@@ -191,15 +196,13 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
                 <div className="space-y-1">
                   <strong className="text-slate-900">종목별 참가 자격</strong>
                   <ul className="text-xs space-y-1 text-slate-700 pl-1">
-                    <li>- 두 종목 이상 출전 시 같은 레벨로만 출전 가능 (4부 남복+4부 혼복 출전 가능, 3부 남복+4부 혼복 출전 불가능)</li>
-                    <li>- <strong>4부:</strong> 부산시 구협회 대회 4부 출전자 및 5부 우승자(5부 혼복우승자 제외)</li>
-                    <li>- <strong>5부:</strong> 부산시 구협회 대회 5부 출전자 및 비기너</li>
+                    <li>- 두 종목 이상 출전시 같은 레벨로만 출전 가능(4부 남복+4부 혼복 출전 가능, 3부 남복+4부 혼복 출전 불가능)</li>
+                    <li>- 4부: 부산시 구협회 대회 4부 출전자 및 5부 우승자(5부 혼복우승자제외)</li>
+                    <li>- 5부: 부산시 구협회 대회 5부 출전자 및 비기너.</li>
+                    <li>- 5부 레벨의 참가자가 4부로 신청 가능하나, 4부 레벨은 5부 신청은 불가함.</li>
+                    <li>- 4부. 5부 팀은 부산시 회원 등록된 팀으로 한정한다(타시도 팀은 4~5부 출전 제한).</li>
+                    <li>- 4부. 5부 출전자 테니스. 배드민턴..등 라켓운동 경력 3개월 미만인자.</li>
                   </ul>
-                  <div className="bg-amber-50/80 border border-amber-200/80 rounded-lg p-2.5 text-xs text-amber-900 space-y-0.5 mt-1">
-                    <p>※ 5부 레벨의 참가자가 4부로 신청 가능하나, 4부 레벨은 5부 신청은 불가함.</p>
-                    <p>※ 4부, 5부 팀은 부산시 회원등록된 팀으로 한정한다.</p>
-                    <p>※ 4부, 5부 출전자 테니스, 배드민턴 등 라켓운동 경력 3개월 미만인 자.</p>
-                  </div>
                 </div>
               </div>
 
@@ -208,7 +211,7 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
                 <div>
                   <strong className="text-slate-900">레벨 위반 및 부정 출전</strong>
                   <ul className="text-xs space-y-1 text-slate-700 mt-1 pl-1">
-                    <li>- 참가 신청 시 기재된 레벨이 사실과 다르거나, 대회 운영진 판단하에 명백한 레벨 위반이 확인될 경우 해당 팀은 즉시 실격(몰수패) 처리되며, 참가비는 반환되지 않음.</li>
+                    <li>- 참가 신청 시 기재된 레벨이 사실과 다르거나, 대회 운영진 판단하에 명백한 레벨 위반이 확인 될 경우 해당 팀은 즉시 실격(몰수패) 처리되며, 참가비는 반환되지 않음.</li>
                     <li>- 해당 판단은 대회 운영위원회의 결정에 따르며, 이에 대한 이의 제기는 불가함.</li>
                   </ul>
                 </div>
