@@ -41,8 +41,8 @@ export const InquirySection: React.FC<InquirySectionProps> = ({
   };
 
   return (
-    <section id="tab-inquiry">
-      <div className="card-clean p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-sm">
+    <section id="tab-inquiry" className="break-keep">
+      <div className="card-clean p-4 sm:p-8 bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-sm">
         <div className="border-b border-slate-100 pb-5 mb-7">
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 text-rose-600 border border-pink-200/70">

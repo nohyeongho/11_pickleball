@@ -35,38 +35,39 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
           </div>
         </div>
 
+        {/* 모바일 화면에서 3개 탭 텍스트가 두 줄로 꺾이지 않도록 좌우 패딩 축소 및 whitespace-nowrap 적용 */}
         <nav className="flex bg-slate-100/90 p-1 rounded-xl gap-1 text-sm font-semibold w-full md:w-auto border border-slate-200/70">
           <button
             onClick={() => onTabChange('register')}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs sm:text-sm ${
+            className={`flex-1 md:flex-none px-2 sm:px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm whitespace-nowrap ${
               currentTab === 'register'
                 ? 'border-gradient-tab text-rose-600 font-bold'
                 : 'border-[1.5px] border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <UserPlus className={`w-3.5 h-3.5 ${currentTab === 'register' ? 'text-rose-600' : 'text-slate-400'}`} />
+            <UserPlus className={`w-3.5 h-3.5 shrink-0 ${currentTab === 'register' ? 'text-rose-600' : 'text-slate-400'}`} />
             <span>신청 접수</span>
           </button>
           <button
             onClick={() => onTabChange('inquiry')}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs sm:text-sm ${
+            className={`flex-1 md:flex-none px-2 sm:px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm whitespace-nowrap ${
               currentTab === 'inquiry'
                 ? 'border-gradient-tab text-rose-600 font-bold'
                 : 'border-[1.5px] border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <Search className={`w-3.5 h-3.5 ${currentTab === 'inquiry' ? 'text-rose-600' : 'text-slate-400'}`} />
+            <Search className={`w-3.5 h-3.5 shrink-0 ${currentTab === 'inquiry' ? 'text-rose-600' : 'text-slate-400'}`} />
             <span>신청 조회</span>
           </button>
           <button
             onClick={onAdminClick}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1.5 text-xs sm:text-sm ${
+            className={`flex-1 md:flex-none px-2 sm:px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-1 sm:gap-1.5 text-xs sm:text-sm whitespace-nowrap ${
               currentTab === 'admin'
                 ? 'border-gradient-tab text-rose-600 font-bold'
                 : 'border-[1.5px] border-transparent text-slate-600 hover:text-slate-900'
             }`}
           >
-            <ShieldCheck className={`w-3.5 h-3.5 ${currentTab === 'admin' ? 'text-rose-600' : 'text-slate-400'}`} />
+            <ShieldCheck className={`w-3.5 h-3.5 shrink-0 ${currentTab === 'admin' ? 'text-rose-600' : 'text-slate-400'}`} />
             <span>대회 관리 {adminUnlocked ? '🟢' : ''}</span>
           </button>
         </nav>

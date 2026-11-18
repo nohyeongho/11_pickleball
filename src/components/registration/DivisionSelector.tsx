@@ -49,21 +49,21 @@ export const DivisionSelector: React.FC<DivisionSelectorProps> = ({
 
     if (!info.isFull) {
       return (
-        <div className="mt-3 p-3.5 rounded-xl bg-emerald-50/90 border border-emerald-200 text-xs font-medium text-emerald-900 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+        <div className="mt-3 p-3.5 rounded-xl bg-emerald-50/90 border border-emerald-200 text-xs font-medium text-emerald-900 flex items-start sm:items-center gap-2 break-keep leading-relaxed">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 sm:mt-0" />
           <span>
             선택하신 <strong>{selectedDivision}</strong>는 현재 정원 내 즉시 신청이 가능합니다. (
-            <span className="font-bold underline">{info.currentNormal}/{info.maxCap}팀</span> 접수됨)
+            <span className="font-bold underline whitespace-nowrap">{info.currentNormal}/{info.maxCap}팀</span> 접수됨)
           </span>
         </div>
       );
     } else if (info.waitListCount < MAX_WAITLIST) {
       return (
-        <div className="mt-3 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-medium text-amber-900 flex items-center gap-2">
-          <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+        <div className="mt-3 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-medium text-amber-900 flex items-start sm:items-center gap-2 break-keep leading-relaxed">
+          <Clock className="w-4 h-4 text-amber-600 shrink-0 mt-0.5 sm:mt-0" />
           <span>
             선택하신 <strong>{selectedDivision}</strong>는 정원이 마감되어{' '}
-            <strong className="text-amber-800 font-bold underline">
+            <strong className="text-amber-800 font-bold underline whitespace-nowrap">
               대기팀 ({info.waitListCount + 1}/{MAX_WAITLIST} 순번)
             </strong>
             으로 접수됩니다. (정원 취소 발생 시 자동 승격)
@@ -72,8 +72,8 @@ export const DivisionSelector: React.FC<DivisionSelectorProps> = ({
       );
     } else {
       return (
-        <div className="mt-3 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-medium text-rose-900 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+        <div className="mt-3 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-medium text-rose-900 flex items-start sm:items-center gap-2 break-keep leading-relaxed">
+          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5 sm:mt-0" />
           <span>
             선택하신 <strong>{selectedDivision}</strong>는 정원({info.maxCap}팀)과 대기팀(최대{' '}
             {MAX_WAITLIST}팀)이 모두 마감되어 신청이 불가합니다.

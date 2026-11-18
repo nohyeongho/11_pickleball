@@ -162,8 +162,8 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
   };
 
   return (
-    <section id="tab-register" className="space-y-6">
-      <div className="border-gradient-banner rounded-2xl p-6 sm:p-7 shadow-xs relative overflow-hidden">
+    <section id="tab-register" className="space-y-6 break-keep">
+      <div className="border-gradient-banner rounded-2xl p-4 sm:p-7 shadow-xs relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-brand-bar opacity-85" />
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-rose-500/8 via-pink-400/8 to-purple-500/8 rounded-full blur-2xl pointer-events-none" />
 
@@ -174,11 +174,11 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
               <span className="text-gradient-brand font-extrabold">
                 2027 Busan Pickleball Association President's Cup National Pickleball Tournament
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-pink-100/70 text-rose-700 border border-pink-200/60">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-pink-100/70 text-rose-700 border border-pink-200/60 whitespace-nowrap">
                 <Sparkles className="w-2.5 h-2.5 text-rose-500" /> 실시간 접수
               </span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 bg-clip-text text-transparent tracking-tight mt-1.5">
+            <h2 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-slate-900 via-purple-950 to-slate-900 bg-clip-text text-transparent tracking-tight mt-1.5">
               부산광역시 피클볼대회 참가신청 접수
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -189,9 +189,9 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
             <button
               type="button"
               onClick={onOpenGuide}
-              className="px-4 py-2.5 rounded-xl text-xs font-bold border-gradient-tab text-rose-600 hover:opacity-90 transition-all flex items-center justify-center gap-1.5 shrink-0 self-start sm:self-center"
+              className="w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold border-gradient-tab text-rose-600 hover:opacity-90 transition-all flex items-center justify-center gap-1.5 shrink-0 self-start sm:self-center whitespace-nowrap"
             >
-              <BookOpen className="w-4 h-4 text-rose-500" />
+              <BookOpen className="w-4 h-4 text-rose-500 shrink-0" />
               <span>대회 운영안내</span>
             </button>
           )}
@@ -225,15 +225,16 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
         </div>
       )}
 
-      <div className="card-clean p-6 sm:p-8 bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-sm">
-        <div className="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between">
+      {/* 모바일에서 내부 버튼/입력창 가로 가용 폭을 넓히기 위해 p-4 sm:p-8 반응형 패딩 적용 */}
+      <div className="card-clean p-4 sm:p-8 bg-white/95 backdrop-blur-sm border border-slate-200/90 shadow-sm">
+        <div className="border-b border-slate-100 pb-4 mb-6 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg bg-gradient-to-br from-purple-50 to-pink-50 text-rose-600 border border-pink-200/70">
               <UserCheck className="w-5 h-5 stroke-[2.5]" />
             </div>
-            <h3 className="text-lg font-black text-slate-900">참가팀 정보 입력</h3>
+            <h3 className="text-base sm:text-lg font-black text-slate-900 whitespace-nowrap">참가팀 정보 입력</h3>
           </div>
-          <span className="text-xs text-slate-400">* 표시는 필수 입력 항목입니다</span>
+          <span className="text-xs text-slate-400 whitespace-nowrap">* 표시는 필수 입력 항목입니다</span>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
@@ -417,7 +418,7 @@ export const RegistrationSection: React.FC<RegistrationSectionProps> = ({
           <button
             type="submit"
             disabled={isBeforeOpen}
-            className={`w-full py-4 rounded-xl text-base font-black shadow-md flex items-center justify-center gap-2 transition-all ${
+            className={`w-full py-4 rounded-xl text-sm sm:text-base font-black shadow-md flex items-center justify-center gap-2 transition-all whitespace-nowrap ${
               isBeforeOpen
                 ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300 shadow-none'
                 : 'btn-primary-athletic'

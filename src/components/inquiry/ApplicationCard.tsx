@@ -36,11 +36,11 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
   const displayName2 = isVerified ? application.player2Name : maskName(application.player2Name);
 
   return (
-    <div className="card-clean p-5 sm:p-6 bg-white border border-slate-200 hover:border-pink-200 transition-colors space-y-4">
+    <div className="card-clean p-4 sm:p-6 bg-white border border-slate-200 hover:border-pink-200 transition-colors space-y-4 break-keep">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-3.5">
         <div>
-          <div className="flex items-center gap-2 text-xs">
-            <span className="mono font-black text-rose-600 tracking-wider bg-pink-50 px-2 py-0.5 rounded border border-pink-200">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="mono font-black text-rose-600 tracking-wider bg-pink-50 px-2 py-0.5 rounded border border-pink-200 whitespace-nowrap">
               {application.regNumber}
             </span>
             <span className="text-slate-300" aria-hidden="true">·</span>
@@ -48,14 +48,14 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
           </div>
 
           <h3 className="text-base sm:text-lg font-black text-slate-900 mt-1.5 flex flex-wrap items-center gap-2">
-            <span>{application.division}</span>
+            <span className="whitespace-nowrap">{application.division}</span>
             <span className="text-slate-300 font-normal" aria-hidden="true">·</span>
-            <span className="text-sm font-bold text-slate-700">{application.eventType || '혼합복식'}</span>
+            <span className="text-sm font-bold text-slate-700 whitespace-nowrap">{application.eventType || '혼합복식'}</span>
             {application.clubName && application.clubName !== '소속없음' && (
               <>
                 <span className="text-slate-300 font-normal" aria-hidden="true">·</span>
                 <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                  <Building2 className="w-3.5 h-3.5 text-slate-400" />
+                  <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                   {application.clubName}
                 </span>
               </>
@@ -66,25 +66,26 @@ export const ApplicationCard: React.FC<ApplicationCardProps> = ({
         <StatusBadge status={application.status} />
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50/80 p-4 rounded-xl border border-slate-100 text-xs">
-        <div>
-          <span className="block mb-1 text-slate-400 font-semibold flex items-center gap-1">
-            <User className="w-3.5 h-3.5 text-slate-400" /> 선수1 (주장)
+      {/* 모바일 2열 배치에서 전화번호가 줄바꿈되지 않도록 여백과 폰트 크기 최적화 */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50/80 p-3 sm:p-4 rounded-xl border border-slate-100 text-xs">
+        <div className="min-w-0">
+          <span className="mb-1 text-slate-400 font-semibold flex items-center gap-1 whitespace-nowrap">
+            <User className="w-3.5 h-3.5 text-slate-400 shrink-0" /> 선수1 (주장)
           </span>
-          <span className="font-bold text-sm text-slate-900">{displayName1}</span>
-          <span className="block mono text-slate-500 mt-0.5 flex items-center gap-1">
-            <Phone className="w-3 h-3 text-slate-400" />
+          <span className="font-bold text-sm text-slate-900 block truncate">{displayName1}</span>
+          <span className="mono text-slate-500 mt-0.5 flex items-center gap-1 text-[11px] sm:text-xs whitespace-nowrap">
+            <Phone className="w-3 h-3 text-slate-400 shrink-0" />
             {application.player1Phone}
           </span>
         </div>
 
-        <div>
-          <span className="block mb-1 text-slate-400 font-semibold flex items-center gap-1">
-            <User className="w-3.5 h-3.5 text-slate-400" /> 선수2 (파트너)
+        <div className="min-w-0">
+          <span className="mb-1 text-slate-400 font-semibold flex items-center gap-1 whitespace-nowrap">
+            <User className="w-3.5 h-3.5 text-slate-400 shrink-0" /> 선수2 (파트너)
           </span>
-          <span className="font-bold text-sm text-slate-900">{displayName2}</span>
-          <span className="block mono text-slate-500 mt-0.5 flex items-center gap-1">
-            <Phone className="w-3 h-3 text-slate-400" />
+          <span className="font-bold text-sm text-slate-900 block truncate">{displayName2}</span>
+          <span className="mono text-slate-500 mt-0.5 flex items-center gap-1 text-[11px] sm:text-xs whitespace-nowrap">
+            <Phone className="w-3 h-3 text-slate-400 shrink-0" />
             {application.player2Phone}
           </span>
         </div>
