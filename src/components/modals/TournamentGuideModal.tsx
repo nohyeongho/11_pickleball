@@ -21,9 +21,9 @@ interface TournamentGuideModalProps {
 
 /**
  * 2027년 부산광역시 피클볼협회장기 전국 피클볼대회 요강 안내 모달 컴포넌트
- * - (11.17 재수정본) 대회 요강 전문(1번~7번)을 누락 없이 원문 그대로 반영함
+ * - (11.20 최신 개정본) 첨부된 대회 요강 문서(1~5페이지 전문)를 원문 그대로 반영함
  * - 모바일 환경에서의 가독성과 조작성을 높이기 위해 바텀시트/센터모달 반응형 전환,
- *   어절 단위 줄바꿈(break-keep), 노치 안전 영역(safe-area), 최소 44px 터치 타겟을 적용함
+ *   어절 단위 줄바꿈(break-keep), 노치 안전 영역(safe-area), 최소 44px 터치 타겟을 유지함
  */
 export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
   isOpen,
@@ -99,9 +99,6 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
               <div>
                 <span className="font-bold text-slate-900">◈ 후 원:</span> 부산광역시, 부산광역시 체육회, 대한피클볼협회, 북구피클볼협회, 남구피클볼협회, 부산진구피클볼협회, 연제구피클볼협회, 영도구피클볼협회, 해운대구피클볼협회
               </div>
-              <div>
-                <span className="font-bold text-slate-900">◈ 협 찬:</span>
-              </div>
             </div>
           </section>
 
@@ -132,13 +129,13 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
                 <p className="font-bold text-slate-900 mb-2">◈ 경기 종목 및 팀 수</p>
                 {/* 모바일에서는 1열 카드로 한눈에 읽히게 하고, 넓은 화면에서는 2열 그리드로 배치함 */}
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm bg-white p-3 rounded-lg border border-slate-200/80 text-slate-700">
-                  <li>1부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</li>
+                  <li>- 1부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</li>
                   <li>- 2부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</li>
                   <li>- 3부: 남자복식 12팀, 여자복식 12팀, 혼합복식 12팀-72명</li>
                   <li>- 4부: 남자복식 16팀, 여자복식 16팀, 혼합복식 16팀-96명</li>
                   <li className="sm:col-span-2">- 5부: 남자복식 16팀, 여자복식 16팀, 혼합복식 16팀-96명</li>
                 </ul>
-                <p className="text-xs text-rose-700 mt-2 pl-1 sm:pl-2">
+                <p className="text-xs text-blue-700 font-medium mt-2 pl-1 sm:pl-2">
                   ※ 참가팀은 12팀(1~3부) 또는 16팀(4~5부) 이하로 제한하나 종목별 참가팀 수를 고려하여 조정할 수 있고, 6팀 미만으로 신청된 종목은 폐부 될 수 있음.
                 </p>
               </div>
@@ -165,25 +162,39 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
             <div className="space-y-3 sm:pl-1">
               <div>
                 <p className="font-bold text-slate-900">
-                  ◈ 참가대상: 대회 신청기간 이전에 부산광역시 피클볼협회 회원으로 가입 완료된 회원
+                  ◈ 참가대상: 부산에서 활동중인 클럽 회원은 대회 신청기간 이전에 부산광역시 피클볼협회 회원으로 가입 완료된 회원에 한함,{' '}
+                  <span className="underline">타시도의 경우 1~3부 회원등록 없이 출전 가능</span>, 4~5부는 타시도는 참가 불가(4~5부는 부산광역시 피클볼협회 회원으로 등록된 회원들만 대상으로 함.)
                 </p>
               </div>
 
               <div>
                 <p className="font-bold text-slate-900 mb-1">◈ 종목별 참가 자격</p>
-                <ul className="text-xs sm:text-sm space-y-1 pl-2 sm:pl-4 text-slate-700">
-                  <li>- 두 종목 이상 출전시 같은 레벨로만 출전 가능(4부 남복+4부 혼복 출전 가능, 3부 남복+4부 혼복 출전 불가능)</li>
-                  <li>- 4부: 부산시 구협회 대회 4부 출전자 및 5부 우승자(5부 혼복우승자제외)</li>
-                  <li>- 5부: 부산시 구협회 대회 5부 출전자 및 비기너.</li>
-                  <li>- 5부 레벨의 참가자가 4부로 신청 가능하나, 4부 레벨은 5부 신청은 불가함.</li>
-                  <li>- 4부. 5부 팀은 부산시 회원 등록된 팀으로 한정한다(타시도 팀은 4~5부 출전 제한).</li>
-                  <li className="font-semibold text-rose-700">- 4부. 5부 출전자 테니스. 배드민턴..등 라켓운동 경력 3개월 미만인자.</li>
-                </ul>
+                <div className="text-xs sm:text-sm space-y-1.5 pl-2 sm:pl-4 text-slate-700">
+                  {/* 역대 전국대회 입상자 출전 레벨 제한 규정 (신규 추가) */}
+                  <ul className="space-y-1">
+                    <li>-역대 전국대회 1부 및 오픈 대회 입상자는 1부로만 출전 가능(남복, 여복, 혼복 모두 해당)</li>
+                    <li>-역대 전국대회 2부 대회 입상자는 1부로만 출전 가능(남복, 여복, 혼복 모두 해당)</li>
+                    <li>-역대 전국대회 3부 입상자는 2부로만 출전 가능</li>
+                    <li>-역대 전국대회 4부 입상자는 3부로만 출전 가능</li>
+                    <li>-역대 전국대회 5부 입상자는 4부로만 출전 가능</li>
+                  </ul>
+                  <p className="font-semibold text-slate-900 pt-0.5">
+                    ※ 전국대회 입상자(1~3)는 레벨보다 상위 레벨에만 참가 가능, 파트너 두 사람 중 한 사람만 해당되더라도 상위 레벨로 참여해야함. 남복(여복, 혼복) 입상이 있는 경우 입상이 없는 하위 레벨 출전 불가, 상위레벨은 출전 가능. 남복(또는 여복) 입상이 있으면 입상이없는 혼복에도 동일하게 적용되고, 혼복에 입상이 있으면 입상이 없는 남복(또는 여복)에도 동일하게 적용됨.
+                  </p>
+                  <ul className="space-y-1 pt-0.5">
+                    <li>- 두 종목 이상 출전시 같은 레벨로만 출전 가능(4부 남복+4부 혼복 출전 가능, 3부 남복+4부 혼복 출전 불가능)</li>
+                    <li>- 4부: 부산시 구협회 대회 4부 출전자 및 5부 우승자(5부 혼복우승자제외)</li>
+                    <li>- 5부: 부산시 구협회 대회 5부 출전자 및 비기너.</li>
+                    <li className="pl-2 sm:pl-3 text-blue-700 font-medium">- 5부 레벨의 참가자가 4부로 신청 가능하나, 4부 레벨은 5부 신청은 불가함.</li>
+                    <li className="pl-2 sm:pl-3 text-blue-700 font-medium">- 4부. 5부 팀은 부산시 회원 등록된 팀으로 한정한다(타시도 팀은 4~5부 출전 제한).</li>
+                    <li className="pl-2 sm:pl-3 text-blue-700 font-medium">- 4부. 5부 출전자 테니스. 배드민턴..등 라켓운동 경력 3개월 미만인자.</li>
+                  </ul>
+                </div>
               </div>
 
               <div>
-                <p className="font-bold text-slate-900 mb-1">◈ 레벨 위반 및 부정 출전</p>
-                <ul className="text-xs sm:text-sm space-y-1 pl-2 sm:pl-4 text-slate-700">
+                <p className="font-bold text-rose-600 mb-1">◈ 레벨 위반 및 부정 출전</p>
+                <ul className="text-xs sm:text-sm space-y-1 pl-2 sm:pl-4 text-rose-600 font-medium">
                   <li>- 참가 신청 시 기재된 레벨이 사실과 다르거나, 대회 운영진 판단하에 명백한 레벨 위반이 확인 될 경우 해당 팀은 즉시 실격(몰수패) 처리되며, 참가비는 반환되지 않음.</li>
                   <li>- 해당 판단은 대회 운영위원회의 결정에 따르며, 이에 대한 이의 제기는 불가함.</li>
                 </ul>
@@ -331,8 +342,8 @@ export const TournamentGuideModal: React.FC<TournamentGuideModalProps> = ({
                   <p>- 8팀 참가 종목: 2개조 풀리그 진행, 각 조 1, 2위팀 4강전 진행</p>
                   <p>- 16팀 참가 종목: 4개조 풀리그 진행, 각 조 1.2위팀 8강. 4강. 결승 진행</p>
                   <p className="text-slate-600 text-xs">※ 참가 팀 수에 따라 일부 조정될 수 있음.</p>
-                  <p>코트 체인지 없음</p>
-                  <p>서브가 네트에 맞고 서브 구역 내에 떨어지면 경기 계속 진행</p>
+                  <p>- 코트 체인지 없음</p>
+                  <p>- 서브가 네트에 맞고 서브 구역 내에 떨어지면 경기 계속 진행</p>
                 </div>
               </div>
 
